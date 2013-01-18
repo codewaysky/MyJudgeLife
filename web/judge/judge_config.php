@@ -7,12 +7,12 @@
 		ORZ plantvsbird
 		ORZ lin_toto
 	*/
-	//如果本引擎在MyOILife中运行，使用true。在其他站点运行，请设置为false。
-	define("IN_MYOILIFE",true);
+	//如果本引擎在MyOILife中运行，使用true。在其他站点运行，请设置为false。一般都不是啦。
+	define("IN_MYOILIFE",false);
 	
 	if (IN_MYOILIFE) {
 		//在MyOILife内，则直接引用函数及配置文件。
-		require_once("/include/config.php");
+		require_once($_SERVER['DOCUMENT_ROOT']."/include/config.php");
 	} else {
 		//不在则需要再次定义。
 		
@@ -20,14 +20,12 @@
 		define("db_host","127.0.0.1");
 	
 		//数据库名称。
-		define("db_name","myoilife_com_oidb");
+		define("db_name","judge");
 		
 		//数据库用户名。
-		define("db_user","oiconnect");
+		define("db_user","root");
 		
 		//数据库密码。
-		define("db_pass","74A4311E11FA956203EBA4EE2B9DEF16");
-		
-		//另外这些用户名、密码什么的和MyOILife的都不一样的，所以不用太高兴哦~
+		define("db_pass","123");
 	}
 ?>
