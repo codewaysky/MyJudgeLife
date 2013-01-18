@@ -1,0 +1,17 @@
+<form action="judge_contact.php" method="post">
+I D <input type="number" id="id" name="id" /><br />
+Name<input type="text" id="name" name="name" /> <br />
+Pass<input type="password" id="password" name="password" /> <br />
+Controller
+<select id="controller" name="controller">
+<option value="UPDATE">Update</option>
+<option value="QUERY">QUERY</option>
+</select>
+<br />
+PID <input type="number" id="jid" name="jid" /> <br />
+Stat<input type="number" id="stat" name="stat" /> <br />
+Stats: 0 - CE; 1 - AC; 2 - WA; 3 - MLE; 4 - TLE; 5 - Waiting; 6 - Unknown Error; <br />
+Msgs<br/>
+<textarea rows="20" cols="80" id="msgs" name="msgs" /></textarea><br />
+<input type="submit"/>
+</form>
