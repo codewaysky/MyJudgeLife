@@ -20,14 +20,12 @@
 		define("db_host","127.0.0.1");
 	
 		//数据库名称。
-		define("db_name","myoilife_com_oidb");
+		define("db_name","");
 		
 		//数据库用户名。
-		define("db_user","oiconnect");
+		define("db_user","");
 		
 		//数据库密码。
-		define("db_pass","74A4311E11FA956203EBA4EE2B9DEF16");
-		
-		//另外这些用户名、密码什么的和MyOILife的都不一样的，所以不用太高兴哦~
+		define("db_pass","");
 	}
 ?>
