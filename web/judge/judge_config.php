@@ -7,8 +7,8 @@
 		ORZ plantvsbird
 		ORZ lin_toto
 	*/
-	//如果本引擎在MyOILife中运行，使用true。在其他站点运行，请设置为false。一般都不是啦。
-	define("IN_MYOILIFE",false);
+	//如果本引擎在MyOILife中运行，使用true。在其他站点运行，请设置为false。
+	define("IN_MYOILIFE",true);
 	
 	if (IN_MYOILIFE) {
 		//在MyOILife内，则直接引用函数及配置文件。
@@ -20,12 +20,12 @@
 		define("db_host","127.0.0.1");
 	
 		//数据库名称。
-		define("db_name","judge");
+		define("db_name","");
 		
 		//数据库用户名。
-		define("db_user","root");
+		define("db_user","");
 		
 		//数据库密码。
-		define("db_pass","123");
+		define("db_pass","");
 	}
 ?>

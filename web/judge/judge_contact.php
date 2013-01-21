@@ -21,7 +21,7 @@
 	$jmid = $_POST['id'];
 	$jmname = base64_encode($_POST['name']);
 	$controller = $_POST['controller'];
-	@$jmpass = sha1(md5(sha1($_POST['pass'])));
+	@$jmpass = base64_encode($_POST['pass']);
 	
 	//因为都被加密过了，所以不用担心注入问题
 	
