@@ -8,5 +8,5 @@ my $xmlfile = dirname($0) . "/config.xml";
 if (-e $xmlfile)
 {
     my $userxs = XML::Simple->new();
-    our $userxml = $userxs->XMLin($xmlfile);
+    our $config = $userxs->XMLin($xmlfile);
 }
