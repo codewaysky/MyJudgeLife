@@ -3,5 +3,5 @@
 	<ServerId>1</ServerId>
 	<ServerName>Catalina</ServerName>
 	<ServerPass>myoilife</ServerPass>
-	<LocalPHPAddr>http://localhost/judge1/judge_contact_local.php</LocalPHPAddr>
+	<LocalPHPAddr>http://localhost/judge1/judge_contact.php</LocalPHPAddr>
 </ServerConfig>

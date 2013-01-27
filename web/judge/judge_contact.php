@@ -27,7 +27,7 @@
 	
 	@$jid = $_POST['jid'];
 	@$stat = $_POST['stat'];
-	@$msgs = base64_encode($_POST['msgs']);
+	@$msgs = $_POST['msgs'];
 	
 	//确认身份
 	

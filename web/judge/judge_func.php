@@ -1,17 +1,37 @@
 <?php
 	require_once('judge_header.php');
+	function get_contact_addr($jmid) {
+		$query = "SELECT pass,addr FROM judge_machine WHERE id=$jmid";
+		$result = mysql_query($query);
+		$array = mysql_fetch_array($result);
+		$array['pass']=base64_decode($array['pass']);
+		return $array['addr']."?pass={$array['pass']}";
+	}
+
+	function get_idle_machine() {
+		$query = "SELECT id FROM judge_machine_stat WHERE stat=1";
+		$result = mysql_query($query);
+		$array = Array();
+		for($i=0;$row=mysql_fetch_array($result);$i++) $array[$i] = $row['id'];
+		return $array[rand(0,count($array)-1)];
+	}
+
 	function checkstat() {
+		/**
+		  * è°ƒç”¨æ­¤å‡½æ•°ä¼šè‡ªåŠ¨ç›‘æµ‹è¯„æµ‹æœºå™¨çŠ¶æ€æ˜¯å¦æ­£å¸¸ã€‚
+		*/
 		$query = "SELECT id FROM judge_machine WHERE enable=1;";
 		$result = mysql_query($query);
 		$query = "SELECT id FROM judge_machine_stat";
 		$result2 = mysql_query($query);
 		if (mysql_num_rows($result) != mysql_num_rows($result2)) return false; else return true;
 	}
+	
 	function refresh_machine_stat() {
 		/**
-		  * ´Ëº¯ÊýÓÃÓÚË¢ÐÂÆÀ²â»úµÄ×´Ì¬¡£
-		  * ÆÀ²â»ú×´Ì¬´æ·ÅÔÚÊý¾Ý¿âÒ»¸öMemoryÒýÇæµÄ±íÖÐ¡£
-		  * ËùÒÔ£¬ÈôÓöµ½Êý¾Ý¿âµ±»ú£¬±íÄÚÈÝ¶ªÊ§µÄÊ±ºò£¬µ÷ÓÃ¸Ãº¯Êý¿ÉË¢ÐÂ×´Ì¬¡£
+		  * æ­¤å‡½æ•°ç”¨äºŽåˆ·æ–°è¯„æµ‹æœºçš„çŠ¶æ€ã€‚
+		  * è¯„æµ‹æœºçŠ¶æ€å­˜æ”¾åœ¨æ•°æ®åº“ä¸€ä¸ªMemoryå¼•æ“Žçš„è¡¨ä¸­ã€‚
+		  * æ‰€ä»¥ï¼Œè‹¥é‡åˆ°æ•°æ®åº“å½“æœºï¼Œè¡¨å†…å®¹ä¸¢å¤±çš„æ—¶å€™ï¼Œè°ƒç”¨è¯¥å‡½æ•°å¯åˆ·æ–°çŠ¶æ€ã€‚
 		*/
 		
 		$query = "SELECT id,pass,addr FROM judge_machine WHERE enable=1;";
@@ -27,5 +47,26 @@
 			preg_match("/Status:(\d);/is",$curl_result,$match);
 			mysql_query("INSERT INTO judge_machine_stat SET id={$row['id']}, stat={$match[1]} on duplicate key UPDATE stat={$match[1]}");
 		}
+	}
+
+	function judge_ping($jid) {
+		if (!checkstat()) refresh_machine_stat();
+
+		$result = mysql_query("SELECT * FROM judge_stat WHERE jid=$jid");
+		$array = mysql_fetch_array($result);
+		$curl_url = get_contact_addr(get_idle_machine())."&controller=task&pid={$array['pid']}&langtype={$array['langtype']}&jid=$jid";
+		$ch = curl_init();
+		$postfield="code=".$array['user_code'];
+		curl_setopt($ch, CURLOPT_URL, $curl_url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postfield);
+		$curl_result = curl_exec($ch);
+		echo $curl_result;
+		preg_match("/Status:(\d);Success/is",$curl_result,$match);
+		if (count($match)>0) 
+			return true;
+		else
+			return false;
 	}
 ?>
