@@ -2,7 +2,7 @@
 	//本服务器的ID
 	define("ServerID",1);
 	//本服务器的名称
-	define("ServerName","Catalina");
+	define("ServerName","Lemonade");
 	//本服务器的密码
 	define("ServerPass","myoilife");
 	//API地址
