@@ -1,0 +1,12 @@
+<?php
+	//本服务器的ID
+	define("ServerID",1);
+	//本服务器的名称
+	define("ServerName","Lemonade");
+	//本服务器的密码
+	define("ServerPass","myoilife");
+	//API地址
+	define("APIAddr","http://192.168.145.132/api/judge/judge_contact.php");
+	//本地Judge模块的路径，请使用完整路径！另外，此路径必须以反斜杠结尾。
+	define("JudgeAddr","/home/lin/Judge_System/");
+?>
