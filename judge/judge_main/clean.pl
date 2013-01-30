@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/suidperl
 
 use File::Basename;
 

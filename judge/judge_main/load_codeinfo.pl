@@ -1,3 +1,4 @@
+#!/usr/bin/perl
 use File::Basename;
 use XML::Simple;
 use Data::Dumper;
